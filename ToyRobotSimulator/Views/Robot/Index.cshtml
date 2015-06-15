@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Toy Robot Simulator</h1>
+    <p class="lead"></p>
+</div>
+
+<img id="robot_north" src="/Content/images/robot_north.png" class="hidden" />
+<img id="robot_east" src="/Content/images/robot_east.png" class="hidden" />
+<img id="robot_south" src="/Content/images/robot_south.png" class="hidden" />
+<img id="robot_west" src="/Content/images/robot_west.png" class="hidden" />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title" id="panel-title">Robot controller</h3>
+    </div>
+    <div class="panel-body">
+        <span class="form-inline">
+            <span class="form-group">
+                <label class="sr-only" for="cmdText">Command</label>
+                
+                <span class="col col-lg-12">
+                    <textarea rows="5" cols="150" id="cmdText" class="form-control" placeholder="Enter command..."></textarea>
+                </span>
+            </span>
+            <button type="button" id="btnExecute" class="btn btn-primary">Execute</button>
+        </span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col col-md-6">
+        <canvas id="rbtCanvas" height="600" width="600"></canvas>
+    </div>
+    <div class="col col-md-6">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#report" id="tabReport">Report</a></li>
+            <li><a data-toggle="tab" href="#log">Log</a></li>
+            <li><a data-toggle="tab" href="#test">Test data</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="report" class="tab-pane fade in active">
+                <h3>Report</h3>
+                <div class="well">
+                    <p id="robotReport">
+
+                    </p>
+                </div>
+            </div>
+            <div id="log" class="tab-pane fade">
+                <h3>Robot Log</h3>
+                <div class="well">
+                    <p id="robotLog">
+
+                    </p>
+                </div>
+            </div>
+            <div id="test" class="tab-pane fade">
+                <h3>Test data</h3>
+                <div class="well">
+                    <p id="testData">
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/Scripts/Robot/robotCanvas.js" type="text/javascript"></script>
+<script src="/Scripts/Robot/robotSimulator.js" type="text/javascript"></script>
+
+<script>
+
+    $(function () {
+        robotCanvas.init();
+        robotSimulator.init(robotCanvas);
+    });
+    
+</script>
+
+<script type="text/x-robot-report-tmpl" id="robotReportTemplate">
+    <div class="row">
+        <div class="col-md-3">
+            X:
+        </div>
+        <div class="col-md-3">
+            {X}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            Y:
+        </div>
+        <div class="col-md-3">
+            {Y}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            F:
+        </div>
+        <div class="col-md-3">
+            {F}
+        </div>
+    </div>
+</script>
+
